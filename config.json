@@ -1,0 +1,7 @@
+{
+"Server": "irc.rizon.net:6667",
+"Channels": ["#svtfilm"],
+"Realname": "knugen",
+"Nick": "svtbot",
+"Prefix": "."
+}
