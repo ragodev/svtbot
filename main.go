@@ -64,7 +64,7 @@ func main() {
 		}
 
 		if strings.Replace(message, " ", "", -1) == "fluffa" {
-			ircobj.Privmsg(e.Arguments[0], "fluffa takes one argument - the target")
+			ircobj.Privmsg(e.Arguments[0], "fluffa tar ett argument - offret")
 		} else if strings.Fields(message)[0] == "fluffa" {
 			target := strings.Fields(message)[1]
 			var fluffastring = "fluffar " + target
@@ -72,7 +72,7 @@ func main() {
 		}
 
 		if strings.Replace(message, " ", "", -1) == "älska" {
-			ircobj.Privmsg(e.Arguments[0], "älska takes one argument - the target")
+			ircobj.Privmsg(e.Arguments[0], "älska tar ett argument - offret")
 		} else if strings.Fields(message)[0] == "älska" {
 			target := strings.Fields(message)[1]
 			var älskastring = älska(target)
