@@ -48,47 +48,47 @@ func main() {
 		message := e.Message()
 		if strings.HasPrefix(message, config.Prefix) {
 			message = strings.TrimPrefix(message, config.Prefix)
-		}
-		if message == "inflik" {
-			ircobj.Privmsg(e.Arguments[0], "Jag skulle bara vilja inflika för ett ögonblick.")
-			ircobj.Privmsg(e.Arguments[0], "Vad du kallar Linux är faktiskt GNU/Linux, eller som jag själv kallar det, GNU+Linux. Linux är inte ett operativsystem i sig själv, utan snarare ännu en del utav ett funktionellt GNU-system, som görs användbart av GNU corelibs, shell-utils, och andra nödvändiga delar, som tillsammans definerar ett OS enligt POSIX.")
-			ircobj.Privmsg(e.Arguments[0], "Många datorer kör ett modifierat GNU-system varje dag, utan att inse det. Genom en lustig härva av händelser kallas det GNU som används ofta Linux, och många av dess användare inser inte att de använder GNU-systemet, som utvecklats utav GNU-projektet.")
-			ircobj.Privmsg(e.Arguments[0], "Det finns ett Linux, och dessa människor använder det, men det är bara en del av systemet de använder. Linux är kerneln, programmet i systemet som allokerar maskinens resurser till de andra programmen du kör. Kerneln är en viktig del utav ett operativsystem, men helt oanvändbart i sig själv; den kan bara fungera i samband med ett helt operativsystem.")
-			ircobj.Privmsg(e.Arguments[0], "Linux används oftast i samband med GNU-operativsystemet: hela systemet är bara GNU med Linux tillagt, eller GNU/Linux. Alla så kallade Linux-distrubitioner är egentligen distrubutioner utav GNU/Linux!")
-		}
-		if message == "blasera" {
-			ircobj.Action(e.Arguments[0], "420blaserar det gröna")
-		}
-		if message == "kommandon" || message == "hjälp" {
-			ircobj.Privmsg(e.Arguments[0], "Nuvarande kommandon: blasera, kattljud, pälsknulla <offer>, älska <offer>, fluffa <offer>")
-		}
-		if strings.Replace(message, " ", "", -1) == "pälsknulla" {
-			ircobj.Privmsg(e.Arguments[0], "pälsknulla tar ett argument - offret")
-		} else if strings.Fields(message)[0] == "pälsknulla" {
-			target := strings.Fields(message)[1]
-			var pälsknullastring = pälsknulla(target)
-			ircobj.Action(e.Arguments[0], pälsknullastring)
-		}
 
-		if strings.Replace(message, " ", "", -1) == "fluffa" {
-			ircobj.Privmsg(e.Arguments[0], "fluffa tar ett argument - offret")
-		} else if strings.Fields(message)[0] == "fluffa" {
-			target := strings.Fields(message)[1]
-			var fluffastring = "fluffar " + target
-			ircobj.Action(e.Arguments[0], fluffastring)
-		}
+			if message == "inflik" {
+				ircobj.Privmsg(e.Arguments[0], "Jag skulle bara vilja inflika för ett ögonblick.")
+				ircobj.Privmsg(e.Arguments[0], "Vad du kallar Linux är faktiskt GNU/Linux, eller som jag själv kallar det, GNU+Linux. Linux är inte ett operativsystem i sig själv, utan snarare ännu en del utav ett funktionellt GNU-system, som görs användbart av GNU corelibs, shell-utils, och andra nödvändiga delar, som tillsammans definerar ett OS enligt POSIX.")
+				ircobj.Privmsg(e.Arguments[0], "Många datorer kör ett modifierat GNU-system varje dag, utan att inse det. Genom en lustig härva av händelser kallas det GNU som används ofta Linux, och många av dess användare inser inte att de använder GNU-systemet, som utvecklats utav GNU-projektet.")
+				ircobj.Privmsg(e.Arguments[0], "Det finns ett Linux, och dessa människor använder det, men det är bara en del av systemet de använder. Linux är kerneln, programmet i systemet som allokerar maskinens resurser till de andra programmen du kör. Kerneln är en viktig del utav ett operativsystem, men helt oanvändbart i sig själv; den kan bara fungera i samband med ett helt operativsystem.")
+				ircobj.Privmsg(e.Arguments[0], "Linux används oftast i samband med GNU-operativsystemet: hela systemet är bara GNU med Linux tillagt, eller GNU/Linux. Alla så kallade Linux-distrubitioner är egentligen distrubutioner utav GNU/Linux!")
+			}
+			if message == "blasera" {
+				ircobj.Action(e.Arguments[0], "420blaserar det gröna")
+			}
+			if message == "kommandon" || message == "hjälp" {
+				ircobj.Privmsg(e.Arguments[0], "Nuvarande kommandon: blasera, kattljud, pälsknulla <offer>, älska <offer>, fluffa <offer>")
+			}
+			if strings.Replace(message, " ", "", -1) == "pälsknulla" {
+				ircobj.Privmsg(e.Arguments[0], "pälsknulla tar ett argument - offret")
+			} else if strings.Fields(message)[0] == "pälsknulla" {
+				target := strings.Fields(message)[1]
+				var pälsknullastring = pälsknulla(target)
+				ircobj.Action(e.Arguments[0], pälsknullastring)
+			}
 
-		if strings.Replace(message, " ", "", -1) == "älska" {
-			ircobj.Privmsg(e.Arguments[0], "älska tar ett argument - offret")
-		} else if strings.Fields(message)[0] == "älska" {
-			target := strings.Fields(message)[1]
-			var älskastring = älska(target)
-			ircobj.Action(e.Arguments[0], älskastring)
-		}
-		if message == "kattljud" {
-			ircobj.Privmsg(e.Arguments[0], kattljud())
-		}
+			if strings.Replace(message, " ", "", -1) == "fluffa" {
+				ircobj.Privmsg(e.Arguments[0], "fluffa tar ett argument - offret")
+			} else if strings.Fields(message)[0] == "fluffa" {
+				target := strings.Fields(message)[1]
+				var fluffastring = "fluffar " + target
+				ircobj.Action(e.Arguments[0], fluffastring)
+			}
 
+			if strings.Replace(message, " ", "", -1) == "älska" {
+				ircobj.Privmsg(e.Arguments[0], "älska tar ett argument - offret")
+			} else if strings.Fields(message)[0] == "älska" {
+				target := strings.Fields(message)[1]
+				var älskastring = älska(target)
+				ircobj.Action(e.Arguments[0], älskastring)
+			}
+			if message == "kattljud" {
+				ircobj.Privmsg(e.Arguments[0], kattljud())
+			}
+		}
 	})
 	ircobj.Loop()
 }
@@ -112,7 +112,7 @@ func älska(person string) string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	var action = []string{"pussar", "slickar", "gosar", "smeker", "lindar armarna om", "kramar", "klappar", "myser", "sniffar", "nafsar", "gnuggar", "eskimåkysser"}
-	var description = []string{"försiktigt", "mjukt", "hårt", "lugnt", "hjärtfyllt", "älskande", "varmt", "golligt", "lyckligt"}
+	var description = []string{"försiktigt", "mjukt", "hårt", "lugnt", "hjärtfyllt", "älskande", "varmt", "gulligt", "lyckligt"}
 
 	hack := []string{action[r.Intn(len(action))], person, description[r.Intn(len(description))], "♥"}
 	return strings.Join(hack, " ")
