@@ -88,6 +88,14 @@ func main() {
 			if message == "kattljud" {
 				ircobj.Privmsg(e.Arguments[0], kattljud())
 			}
+			if strings.Replace(message, " ", "", -1) == "mörda" {
+				ircobj.Privmsg(e.Arguments[0], "mörda tar ett argument - offret")
+			} else if strings.Fields(message)[0] == "mörda" {
+				target := strings.Fields(message)[1]
+				var mördastring = mörda(target)
+				ircobj.Action(e.Arguments[0], mördastring)
+
+			}
 		}
 	})
 	ircobj.Loop()
@@ -123,4 +131,11 @@ func kattljud() string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	var noises = []string{"mew", "meow", "mrawr", "rawr", "rar", "mrowr", "rwr", "mrw", "mrwrw"}
 	return noises[r.Intn(len(noises))]
+}
+func mörda(person string) string {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	var action = []string{"mördar", "slaktar", "lemlestar", "krossar", "mosar", "hugger", "cuttar", "tystar ner", "fimpar", "utplånar", "eliminerar", "dräper"}
+	var description = []string{"försiktigt", "mjukt", "hårt", "lugnt", "hjärtfyllt", "älskande", "varmt", "gulligt", "lyckligt"}
+	hack := []string{action[r.Intn(len(action))], person, description[r.Intn(len(description))], "♥"}
+	return strings.Join(hack, " ")
 }
