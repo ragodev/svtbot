@@ -59,7 +59,7 @@ func main() {
 			case message == "blasera":
 				ircobj.Action(e.Arguments[0], "420blaserar det gröna")
 			case message == "kommandom" || message == "hjälp":
-				ircobj.Privmsg(e.Arguments[0], "Nuvarande kommandon: blasera, kattljud, pälsknulla <offer>, älska <offer>, fluffa <offer>")
+				ircobj.Privmsg(e.Arguments[0], "Nuvarande kommandon: blasera, kattljud, pälsknulla <offer>, älska <offer>, fluffa <offer>, mörda <offer>")
 			case strings.HasPrefix(message, "pälsknulla"):
 				if strings.Replace(message, " ", "", -1) == "pälsknulla" {
 					ircobj.Privmsg(e.Arguments[0], "pälsknulla tar ett argument - offret")
@@ -74,7 +74,7 @@ func main() {
 					ircobj.Privmsg(e.Arguments[0], "fluffa tar ett argument - offret")
 				} else {
 					target := strings.Fields(message)[1]
-					ircobj.Action(e.Arguments[0], "fluffar"+target)
+					ircobj.Action(e.Arguments[0], "fluffar " + target)
 				}
 			case strings.HasPrefix(message, "älska"):
 				if strings.Replace(message, " ", "", -1) == "älska" {
@@ -86,6 +86,14 @@ func main() {
 				}
 			case message == "kattljud":
 				ircobj.Privmsg(e.Arguments[0], kattljud())
+
+			case strings.HasPrefix(message, "mörda"):
+			     if strings.Replace(message, " ", "", -1) == "mörda" {
+			     	ircobj.Privmsg(e.Arguments[0], "mörda tar ett argument - offret")
+			     } else {
+			       	    target := strings.Fields(message)[1]
+				    ircobj.Action(e.Arguments[0], mörda(target))
+			     }
 			}
 		}
 	})
@@ -93,10 +101,19 @@ func main() {
 	ircobj.Loop()
 }
 
+func mörda(person string) string {
+     r := rand.New(rand.NewSource(time.Now().UnixNano()))
+     
+     action := []string{"isar", "cuttar", "misshandlar", "spräcker", "dränker", "klyver", "maler", "kväver", "stryper", "åderlåter", "kokar", "pastöriserar"}
+     other := []string{"hårt", "mjukt", "försiktigt", "med glimten i ögat", "med ett mordiskt vrål", "med en tår i ögat", "naken", "med ett maniskt skratt", "medans Klas Lund tittar på", "ute i skogen", "med enbart en halsduk på sig"}
+
+     hack := []string{action[r.Intn(len(action))], person, other[r.Intn(len(action))]}
+     return strings.Join(hack, " ")
+}
 func pälsknulla(person string) string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 
-	var action = []string{"biter", "slickar", "penetrerar", "leker med", "spräcker", "misshandlar", "kyssar", "våldtar", "glider in i", "drar ut sigsjälv från", "tänder eld på", "gnuggar sig själv mot"}
+	var action = []string{"biter", "slickar", "penetrerar", "leker med", "spräcker", "misshandlar", "kysser", "våldtar", "glider in i", "drar ut sigsjälv från", "tänder eld på", "gnuggar sig själv mot"}
 	var description = []string{"skrumpna", "illadoftande", "unga", "slitna", "stinkande", "enorma", "minimala", "söta", "lösa", "mjuka", "droppande", "brännheta", "iskalla", "regnbågsfärgade"}
 	var object = []string{"murrhål", "armhåla", "ansikte", "navel", "kloak", "gentooinstallation", "tunga", "livmoder", "strumpa", "avgasrör", "plåttermos", ".... Skit samma, jag vill inte detta egentligen."}
 
@@ -123,11 +140,4 @@ func kattljud() string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	var noises = []string{"mew", "meow", "mrawr", "rawr", "rar", "mrowr", "rwr", "mrw", "mrwrw"}
 	return noises[r.Intn(len(noises))]
-}
-func mörda(person string) string {
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	var action = []string{"mördar", "slaktar", "lemlestar", "krossar", "mosar", "hugger", "cuttar", "tystar ner", "fimpar", "utplånar", "eliminerar", "dräper"}
-	var description = []string{"försiktigt", "mjukt", "hårt", "lugnt", "hjärtfyllt", "älskande", "varmt", "gulligt", "lyckligt"}
-	hack := []string{action[r.Intn(len(action))], person, description[r.Intn(len(description))], "♥"}
-	return strings.Join(hack, " ")
 }
