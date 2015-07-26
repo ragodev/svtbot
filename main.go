@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"github.com/thoj/go-ircevent"
@@ -32,7 +33,8 @@ func main() {
 	}
 
 	ircobj := irc.IRC(config.Nick, config.Realname)
-
+	ircobj.UseTLS = true
+	ircobj.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 	error := ircobj.Connect(config.Server)
 	if error != nil {
 		fmt.Println(error)
@@ -58,8 +60,10 @@ func main() {
 
 			case message == "blasera":
 				ircobj.Action(e.Arguments[0], "420blaserar det gröna")
-			case message == "kommandom" || message == "hjälp":
-				ircobj.Privmsg(e.Arguments[0], "Nuvarande kommandon: blasera, kattljud, pälsknulla <offer>, älska <offer>, fluffa <offer>, mörda <offer>")
+			case message == "hellseger":
+				ircobj.Privmsg(e.Arguments[0], hellseger())
+			case message == "kommandon" || message == "hjälp":
+				ircobj.Privmsg(e.Arguments[0], "Nuvarande kommandon: blasera, kattljud, hellseger, pälsknulla <offer>, älska <offer>, fluffa <offer>, mörda <offer>")
 			case strings.HasPrefix(message, "pälsknulla"):
 				if strings.Replace(message, " ", "", -1) == "pälsknulla" {
 					ircobj.Privmsg(e.Arguments[0], "pälsknulla tar ett argument - offret")
@@ -74,7 +78,7 @@ func main() {
 					ircobj.Privmsg(e.Arguments[0], "fluffa tar ett argument - offret")
 				} else {
 					target := strings.Fields(message)[1]
-					ircobj.Action(e.Arguments[0], "fluffar " + target)
+					ircobj.Action(e.Arguments[0], "fluffar "+target)
 				}
 			case strings.HasPrefix(message, "älska"):
 				if strings.Replace(message, " ", "", -1) == "älska" {
@@ -88,12 +92,12 @@ func main() {
 				ircobj.Privmsg(e.Arguments[0], kattljud())
 
 			case strings.HasPrefix(message, "mörda"):
-			     if strings.Replace(message, " ", "", -1) == "mörda" {
-			     	ircobj.Privmsg(e.Arguments[0], "mörda tar ett argument - offret")
-			     } else {
-			       	    target := strings.Fields(message)[1]
-				    ircobj.Action(e.Arguments[0], mörda(target))
-			     }
+				if strings.Replace(message, " ", "", -1) == "mörda" {
+					ircobj.Privmsg(e.Arguments[0], "mörda tar ett argument - offret")
+				} else {
+					target := strings.Fields(message)[1]
+					ircobj.Action(e.Arguments[0], mörda(target))
+				}
 			}
 		}
 	})
@@ -102,13 +106,13 @@ func main() {
 }
 
 func mörda(person string) string {
-     r := rand.New(rand.NewSource(time.Now().UnixNano()))
-     
-     action := []string{"isar", "cuttar", "misshandlar", "spräcker", "dränker", "klyver", "maler", "kväver", "stryper", "åderlåter", "kokar", "pastöriserar"}
-     other := []string{"hårt", "mjukt", "försiktigt", "med glimten i ögat", "med ett mordiskt vrål", "med en tår i ögat", "naken", "med ett maniskt skratt", "medans Klas Lund tittar på", "ute i skogen", "med enbart en halsduk på sig"}
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 
-     hack := []string{action[r.Intn(len(action))], person, other[r.Intn(len(action))]}
-     return strings.Join(hack, " ")
+	action := []string{"isar", "cuttar", "misshandlar", "spräcker", "dränker", "klyver", "maler", "kväver", "stryper", "åderlåter", "kokar", "pastöriserar"}
+	other := []string{"hårt", "mjukt", "försiktigt", "med glimten i ögat", "med ett mordiskt vrål", "med en tår i ögat", "naken", "med ett maniskt skratt", "medans Klas Lund tittar på", "ute i skogen", "med enbart en halsduk på sig"}
+
+	hack := []string{action[r.Intn(len(action))], person, other[r.Intn(len(action))]}
+	return strings.Join(hack, " ")
 }
 func pälsknulla(person string) string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
@@ -140,4 +144,10 @@ func kattljud() string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	var noises = []string{"mew", "meow", "mrawr", "rawr", "rar", "mrowr", "rwr", "mrw", "mrwrw"}
 	return noises[r.Intn(len(noises))]
+}
+
+func hellseger() string {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	fraser := []string{"hell seger!", "hitler gjorde inget fel", "Klas \"Rätt hudfärg för att klättra i berg\" Lund", "Klas \"Schäferhund har kurd i mund\" Lund", "Klas \"Gör profit på att vara antisemit\" Lund", "Klas \"Bottenlöst hat mot kalifat\" Lund", "Klas \"Skyddar förhuden från Bonnierjuden\" Lund", "Klas \"Rasfrämling ger dålig stämning\" Lund", "Klas \"Migration med båt slutar i gråt\" Lund", "Klas \"Framgent blir Sverige homogent\" Lund", "Klas \"Dränk en bankman i en ankdamm\" Lund", "Klas \"Kalabalik baserad på euganik\" Lund", "Klas \"Skinnflå en eskimå\" Lund", "Klas \"Överflöd av bråd död\" Lund", "Klas \"Genant att vara släkt med en migrant\" Lund", "Klas \"Slösa ingen sympati på papperslösa\" Lund", "Klas \"Man bestiger ingen klippa i kippa\" Lund", "Klas \"Ingen frid för negroid individ\" Lund", "Klas \"Bemöter hula-hula med dumdumkula\" Lund", "Klas \"Ajöken, ökenfröken!\" Lund", "Klas \"Rätt ras, annars gas\" Lund", "Klas \"Ingen degeneration i vår nordiska federation\" Lund", "Klas \"Grov patron för semitisk religion\" Lund", "Klas \"Sätter ryssen i abyssen\" Lund"}
+	return fraser[r.Intn(len(fraser))]
 }

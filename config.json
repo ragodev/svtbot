@@ -1,7 +1,7 @@
 {
-"Server": "irc.rizon.net:6667",
-"Channels": ["#svtfilm"],
-"Realname": "knugen",
-"Nick": "svtbot",
+"Server": "irc.swehack.org:6697",
+"Channels": ["#laidback"],
+"Realname": "Julia",
+"Nick": "JuliaBot",
 "Prefix": "."
 }
