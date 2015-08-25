@@ -1,6 +1,6 @@
 {
 "Server": "irc.swehack.org:6697",
-"Channels": ["#laidback"],
+"Channels": ["#goober"],
 "Realname": "Julia",
 "Nick": "JuliaBot",
 "Prefix": "."

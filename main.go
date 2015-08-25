@@ -90,7 +90,8 @@ func main() {
 				}
 			case message == "kattljud":
 				ircobj.Privmsg(e.Arguments[0], kattljud())
-
+			case strings.TrimSpace(message) == "ss" || strings.TrimSpace(message) == "per":
+				ircobj.Privmsg(e.Arguments[0], sprutskit())
 			case strings.HasPrefix(message, "mörda"):
 				if strings.Replace(message, " ", "", -1) == "mörda" {
 					ircobj.Privmsg(e.Arguments[0], "mörda tar ett argument - offret")
@@ -112,6 +113,14 @@ func mörda(person string) string {
 	other := []string{"hårt", "mjukt", "försiktigt", "med glimten i ögat", "med ett mordiskt vrål", "med en tår i ögat", "naken", "med ett maniskt skratt", "medans Klas Lund tittar på", "ute i skogen", "med enbart en halsduk på sig"}
 
 	hack := []string{action[r.Intn(len(action))], person, other[r.Intn(len(action))]}
+	return strings.Join(hack, " ")
+}
+func sprutskit() string {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	s := []string{"sprutskiter", "bajsar", "kastar skit", "kräks", "kanonbajsar", "spottar bajs", "kletar bajs", "kissar", "fiser", "hostar bajs", "spottar skit"}
+	p := []string{"på", "mot"}
+	t := []string{"taket", "stolen", "skärmen", "golvet", "datorn", "bänken", "skrivbordet", "chloe", "grannen", "mig själv", "alla flash-XSSer som någonsin hittats", "alla som gillar family guy", "alla u-länder", "äldreboendets fönster", "kyrkporten", "alla som är dumma nog att skaffa barn", "pentagramet jag kissade i snön", "sql-injektionerna som butkus hittade", "hela jävla swehack"}
+	hack := []string{s[r.Intn(len(s))], p[r.Intn(len(p))], t[r.Intn(len(t))]}
 	return strings.Join(hack, " ")
 }
 func pälsknulla(person string) string {
@@ -148,6 +157,6 @@ func kattljud() string {
 
 func hellseger() string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	fraser := []string{"hell seger!", "hitler gjorde inget fel", "Klas \"Rätt hudfärg för att klättra i berg\" Lund", "Klas \"Schäferhund har kurd i mund\" Lund", "Klas \"Gör profit på att vara antisemit\" Lund", "Klas \"Bottenlöst hat mot kalifat\" Lund", "Klas \"Skyddar förhuden från Bonnierjuden\" Lund", "Klas \"Rasfrämling ger dålig stämning\" Lund", "Klas \"Migration med båt slutar i gråt\" Lund", "Klas \"Framgent blir Sverige homogent\" Lund", "Klas \"Dränk en bankman i en ankdamm\" Lund", "Klas \"Kalabalik baserad på euganik\" Lund", "Klas \"Skinnflå en eskimå\" Lund", "Klas \"Överflöd av bråd död\" Lund", "Klas \"Genant att vara släkt med en migrant\" Lund", "Klas \"Slösa ingen sympati på papperslösa\" Lund", "Klas \"Man bestiger ingen klippa i kippa\" Lund", "Klas \"Ingen frid för negroid individ\" Lund", "Klas \"Bemöter hula-hula med dumdumkula\" Lund", "Klas \"Ajöken, ökenfröken!\" Lund", "Klas \"Rätt ras, annars gas\" Lund", "Klas \"Ingen degeneration i vår nordiska federation\" Lund", "Klas \"Grov patron för semitisk religion\" Lund", "Klas \"Sätter ryssen i abyssen\" Lund"}
+	fraser := []string{"Klas \"Ajöken, ökenfröken!\" Lund", "Klas \"Bemöter hula-hula med dumdumkula\" Lund", "Klas \"Beväpna germanderna, nu intar vi skanderna\" Lund", "Klas \"Blixt & Dunder inte Banker & Kunder\" Lund", "Klas \"Blodad tand för nordiskt land\" Lund", "Klas \"Bottenlöst hat mot kalifat\" Lund", "Klas \"Bryt dig fri från skuld - sno en judes guld\" Lund", "Klas \"Demokrati är hyckleri\" Lund", "Klas \"Dränk en bankman i en ankdamm\" Lund", "Klas \"En nordisk renässans krossar judens storfinans\" Lund", "Klas \"En nordisk union är min vision\" Lumd", "Klas \"Fjorton åttioåtta, gasa en zigenarråtta\" Lund", "Klas \"Framgent blir Sverige homogent\" Lund", "Klas \"Genant att vara släkt med en migrant\" Lund", "Klas \"Gör profit på att vara antisemit\" Lund", "Klas \"Grov patron för semitisk religion\" Lund", "Klas \"Grov patron mot semitisk religion\" Lund", "Klas \"Gul, brun, svart eller röd, efter raskriget är du död\" Lund", "Klas \"Hell seger, häng en neger\" Lund", "Klas \"Hyperboreas kall blir västvärldens fall\" Lund", "Klas \"Ingen degeneration i vår nordiska federation\" Lund", "Klas \"Ingen frid för negroid individ\" Lund", "Klas \"Juden står böjd, för flaggan på höjd, nu är jag nöjd\" Lund", "Klas \"Kalabalik baserad på euganik\" Lund", "Klas \"Laddad AK-47 väntar på HBTQ\" Lund", "Klas \"Makt åt norden, lägg juden i jorden\" Lund", "Klas \"Man bestiger ingen klippa i kippa\" Lund", "Klas \"Med blodad klo mot NWO\" Lund", "Klas \"Med kniv mot Tel Aviv\" Lund", "Klas \"Migration med båt slutar i gråt\" Lund", "Klas \"Oden har orden i Norden\" Lund", "Klas \"Överflöd av bråd död\" Lund", "Klas \"Rasfrämling ger dålig stämning\" Lund", "Klas \"Rasren skurk dödar varenda turk\" Lund", "Klas \"Rätt hudfärg för att klättra i berg\" Lund", "Klas \"Rätt ras, annars gas\" Lund", "Klas \"Sätter ryssen i abyssen\" Lund", "Klas \"Schäferhund har kurd i mund\" Lund", "Klas \"Skinnflå en eskimå\" Lund", "Klas \"Skyddar förhuden från Bonnierjuden\" Lund", "Klas \"Slå ett slag för repets dag\" Lund", "Klas \"Slösa ingen sympati på papperslösa\" Lund", "Klas \"Stångarhornet mot de som kraschade in i WTC-tornet\" Lund", "Klas \"Ta och tig, nu är dax för rasligt krig\" Lund", "Klas \"Tor är min storebror\" Lund", "Klas \"Total banzai mot alla Thai\" Lund", "Klas \"Utländsk mat? Smaka vårt hat\" Lund", "Klas \"Vit man sätter bonnier i brand\" Lund", "Klas \"Zion får smällen, sen bestiger vi fjällen\" Lund"}
 	return fraser[r.Intn(len(fraser))]
 }
