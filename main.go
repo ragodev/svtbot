@@ -118,8 +118,8 @@ func mörda(person string) string {
 func sprutskit() string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	s := []string{"sprutskiter", "bajsar", "kastar skit", "kräks", "kanonbajsar", "spottar bajs", "kletar bajs", "kissar", "fiser", "hostar bajs", "spottar skit"}
-	p := []string{"på", "mot"}
-	t := []string{"taket", "stolen", "skärmen", "golvet", "datorn", "bänken", "skrivbordet", "chloe", "grannen", "mig själv", "alla flash-XSSer som någonsin hittats", "alla som gillar family guy", "alla u-länder", "äldreboendets fönster", "kyrkporten", "alla som är dumma nog att skaffa barn", "pentagramet jag kissade i snön", "sql-injektionerna som butkus hittade", "hela jävla swehack"}
+	p := []string{"på", "mot", "under" }
+	t := []string{"taket", "stolen", "skärmen", "golvet", "datorn", "bänken", "skrivbordet", "chloe", "grannen", "mig själv", "alla flash-XSSer som någonsin hittats", "alla som gillar family guy", "alla u-länder", "äldreboendets fönster", "kyrkporten", "alla som är dumma nog att skaffa barn", "pentagramet jag kissade i snön", "sql-injektionerna som butkus hittade", "hela jävla swehack", "goober", "butkus", "bordet", "musmattan", "chassit", "chloes dator" }
 	hack := []string{s[r.Intn(len(s))], p[r.Intn(len(p))], t[r.Intn(len(t))]}
 	return strings.Join(hack, " ")
 }
